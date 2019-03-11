@@ -2,6 +2,17 @@
   "name": "make_wp_vue",
   "version": "0.1.0",
   "private": true,
+  "description": "Stay up-to-date with Make WordPress team discussions and developments",
+  "keywords": [
+    "WordPress",
+    "Contributor",
+    "Make WordPress",
+    "REST API",
+    "Vuejs"
+  ],
+  "author": "Carme Mias",
+  "repository": "https://github.com/carmemias/make_wp_vue.git",
+  "license": "GPL-2.0-or-later",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -9,7 +20,11 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
-    "vue": "^2.6.6"
+    "cheerio": "^1.0.0-rc.2",
+    "cors": "^2.8.5",
+    "request": "^2.88.0",
+    "vue": "^2.6.6",
+    "vue-router": "^3.0.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",

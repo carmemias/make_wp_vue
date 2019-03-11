@@ -1,5 +1,7 @@
 # make_wp_vue
 
+Keep up-to-date with your favourite **Make WordPress** teams.
+
 ## Project setup
 ```
 npm install

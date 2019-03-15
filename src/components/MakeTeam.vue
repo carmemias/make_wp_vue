@@ -1,7 +1,7 @@
 <template lang="html">
 	<div class="team">
 		<h3> {{team.name}} </h3>
-		<team-icons></team-icons>
+		<team-icons :team="team" :isSelected="isSelected"></team-icons>
 		<p class="description"> {{team.description}}</p>
 	</div>
 </template>
@@ -11,7 +11,7 @@ import TeamIcons from './TeamIcons.vue'
 
 export default {
 	name: "make-team",
-	props: ['team'],
+	props: ['team', 'isSelected'],
 	components: {
 		TeamIcons
 	}

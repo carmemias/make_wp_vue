@@ -11,7 +11,12 @@ import TeamIcons from './TeamIcons.vue'
 
 export default {
 	name: "make-team",
-	props: ['team', 'isSelected'],
+	props: ['team', 'followedTeams'],
+	computed: {
+		isSelected(){
+			return this.followedTeams.includes(this.team)
+		}
+	},
 	components: {
 		TeamIcons
 	}

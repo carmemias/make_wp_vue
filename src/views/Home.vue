@@ -3,8 +3,8 @@
 		<h1>Stay up-to-date with Make WordPress</h1>
 		<section id="followed">
 			<h2>Teams you Follow</h2>
-			<div class="teams" :class="{noTeams: noFollows}">
-				<make-team v-for="(team, index) in followedTeams" :key="index" :team="team" :isSelected="true"></make-team>
+			<div class="teams" :class="{noFollows: noFollows}">
+				<make-team v-for="(team, index) in followedTeams" :key="index" :team="team" :followedTeams="followedTeams"></make-team>
 				<div v-if="noFollows">Like a team to start following it.</div>
 			</div>
 		</section>
@@ -12,7 +12,7 @@
 		<section id="remainder">
 			<h2>All Make WordPress Teams</h2>
 			<div class="teams" v-if="teamsList">
-				<make-team v-for="(team, index) in teamsList" :key="index" :team="team" :isSelected="false"></make-team>
+				<make-team v-for="(team, index) in teamsList" :key="index" :team="team" :followedTeams="followedTeams"></make-team>
 			</div>
 		</section>
 	</main>
@@ -77,12 +77,12 @@ export default {
 		min-height: 300px;
 	}
 
-	#followed .noTeams{
+	#followed .noFollows{
 		justify-content: center;
 		align-items: center;
 	}
 
-	#followed .noTeams > div {
+	#followed .noFollows > div {
 		width: 30%;
 		font-size: 1.2em;
 		text-transform: uppercase;

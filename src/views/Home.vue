@@ -3,13 +3,14 @@
 		<h1>Stay up-to-date with Make WordPress</h1>
 		<section id="followed">
 			<h2>Teams you Follow</h2>
-			<div class="teams">
+			<div class="teams" :class="{noTeams: noFollows}">
 				<make-team v-for="(team, index) in followedTeams" :key="index" :team="team" :isSelected="true"></make-team>
+				<div v-if="noFollows">Like a team to start following it.</div>
 			</div>
 		</section>
 
 		<section id="remainder">
-			<h2>Teams</h2>
+			<h2>All Make WordPress Teams</h2>
 			<div class="teams" v-if="teamsList">
 				<make-team v-for="(team, index) in teamsList" :key="index" :team="team" :isSelected="false"></make-team>
 			</div>
@@ -30,18 +31,30 @@ export default {
 			followedTeams: []
 		}
 	},
+	computed: {
+		noFollows(){
+			return this.followedTeams.length === 0
+		}
+	},
 	components: {
 		MakeTeam
 	},
 	created(){
 		this.teamsList = teams;
-		eventBus.$on('team-selected', team => this.addTeamToFollowedSection(team))
+		eventBus.$on('team-toggled', team => this.toggleFollowedTeam(team))
 	},
 	methods: {
-		addTeamToFollowedSection(team){
+		toggleFollowedTeam(team){
 			if(! this.followedTeams.includes(team) ){
-				//add to followedTeams section
 				this.followedTeams.push(team)
+			} else {
+				// remove team from followedTeams
+				const followedIndex = this.followedTeams.indexOf(team);
+				this.followedTeams.splice(followedIndex,1)
+
+				// change teams' heart icon back to grey
+				// this should be done from the MakeTeam component.
+
 			}
 		}
 	}
@@ -61,6 +74,18 @@ export default {
 	#followed > .teams {
 		padding: 20px;
 		border: 1px dashed #ccc;
+		min-height: 300px;
+	}
+
+	#followed .noTeams{
+		justify-content: center;
+		align-items: center;
+	}
+
+	#followed .noTeams > div {
+		width: 30%;
+		font-size: 1.2em;
+		text-transform: uppercase;
 	}
 
 	@media (min-width: 768px){

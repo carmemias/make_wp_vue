@@ -2,22 +2,35 @@
 	<div class="team">
 		<h3> {{team.name}} </h3>
 		<team-icons :team="team" :isSelected="isSelected"></team-icons>
+		<modal-content v-if="showModal" :team="team" :isSelected="isSelected"></modal-content>
 	</div>
 </template>
 
 <script>
+import {eventBus} from '../main.js';
 import TeamIcons from './TeamIcons.vue'
+import ModalContent from './ModalContent.vue'
 
 export default {
 	name: "make-team",
 	props: ['team', 'followedTeams'],
+	data(){
+		return {
+			showModal: false
+		}
+	},
 	computed: {
 		isSelected(){
 			return this.followedTeams.includes(this.team)
 		}
 	},
 	components: {
-		TeamIcons
+		TeamIcons,
+		ModalContent
+	},
+	created(){
+		eventBus.$on('show-team-info', (team) => { if(this.team.name === team.name){ this.showModal = true } })
+		eventBus.$on('close-modal', () => { this.showModal = false })
 	}
 }
 </script>

@@ -26,7 +26,7 @@ export default {
 			eventBus.$emit('team-toggled', this.team);
 		},
 		openTeamPage(){
-
+			eventBus.$emit('show-team-info', this.team);
 		}
 	}
 }

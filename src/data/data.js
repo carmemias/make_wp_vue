@@ -145,4 +145,18 @@ const teams = [
 	}
 ]
 
-export default teams;
+const sortedTeams = teams.sort(function(a, b) {
+	let nameA = a.name.toUpperCase();
+	let nameB = b.name.toUpperCase();
+	if (nameA < nameB) {
+		return -1;
+	}
+	if (nameA > nameB) {
+		return 1;
+	}
+
+	// names must be equal
+	return 0;
+});
+
+export default sortedTeams;

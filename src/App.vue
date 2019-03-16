@@ -1,9 +1,9 @@
 <template>
 	<div id="app">
 		<img alt="Vue logo" src="./assets/wordpress-logo-hoz-rgb.png">
-		<div id="nav">
+		<nav id="nav">
 			<router-link to="/">Home</router-link>
-		</div>
+		</nav>
 		<router-view/>
 	</div>
 </template>

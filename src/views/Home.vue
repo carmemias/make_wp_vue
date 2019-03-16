@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import teams from '../data/data.js';
+import sortedTeams from '../data/data.js';
 import MakeTeam from '../components/MakeTeam.vue';
 import {eventBus} from '../main.js';
 
@@ -40,21 +40,18 @@ export default {
 		MakeTeam
 	},
 	created(){
-		this.teamsList = teams;
+		this.teamsList = sortedTeams;
 		eventBus.$on('team-toggled', team => this.toggleFollowedTeam(team))
 	},
 	methods: {
 		toggleFollowedTeam(team){
 			if(! this.followedTeams.includes(team) ){
+				// add team to followedTeams
 				this.followedTeams.push(team)
 			} else {
 				// remove team from followedTeams
 				const followedIndex = this.followedTeams.indexOf(team);
 				this.followedTeams.splice(followedIndex,1)
-
-				// change teams' heart icon back to grey
-				// this should be done from the MakeTeam component.
-
 			}
 		}
 	}
@@ -68,13 +65,19 @@ export default {
 	}
 	#followed .teams, #remainder .teams{
 		display: flex;
-		flex-direction:column;
+		flex-direction: column;
+		align-items: flex-start;
+		padding: 20px;
+		margin: 5px;
+	}
+
+	#remainder .teams {
+		border: 1px solid #ccc;
 	}
 
 	#followed > .teams {
-		padding: 20px;
 		border: 1px dashed #ccc;
-		min-height: 300px;
+		min-height: 100px;
 	}
 
 	#followed .noFollows{
@@ -90,8 +93,9 @@ export default {
 
 	@media (min-width: 768px){
 		#followed .teams, #remainder .teams{
-			flex-direction:row;
+			flex-direction: row;
 			flex-wrap: wrap;
+			justify-content: center;
 		}
 	}
 </style>

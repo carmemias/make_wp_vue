@@ -2,7 +2,6 @@
 	<div class="team">
 		<h3> {{team.name}} </h3>
 		<team-icons :team="team" :isSelected="isSelected"></team-icons>
-		<p class="description"> {{team.description}}</p>
 	</div>
 </template>
 
@@ -25,14 +24,18 @@ export default {
 
 <style lang="css" scoped>
 	.team {
+		display: flex;
+		justify-content: space-between;
+		width: calc(100% - 42px);
 		padding: 10px;
 		border: 1px solid #ccc;
-		margin: 10px auto;
+		margin: 5px;
 	}
 
 	@media (min-width: 768px){
 		.team {
-			width: 30%;
+			width: calc(30% - 10px);
+
 		}
 	}
 </style>

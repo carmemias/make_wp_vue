@@ -37,7 +37,16 @@ export default {
 		// get the team's posts
 		fetch('https://make.wordpress.org/' + teamName + '/wp-json/wp/v2/posts?_embed')
 		.then(res => res.json())
-		.then(posts => this.teamPosts = posts)
+		.then(posts => { this.teamPosts = this.prioritiseStickies(posts) })
+	},
+	methods: {
+		prioritiseStickies(posts){
+			const sortedPosts  = posts.sort( function(a,b){
+				return a.sticky === b.sticky ? 0 : b.sticky ? 1 : -1;
+			} );
+
+			return sortedPosts;
+		}
 	}
 }
 </script>

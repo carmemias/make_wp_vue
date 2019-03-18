@@ -2,8 +2,12 @@
 
 	<article :id="postId">
 		<h3 v-html="post.title.rendered"></h3>
-		<p><small>{{ getAuthor }} - {{ getDateTime }}</small><br>
-		<small v-if="getCategories != 'Uncategorized'"><strong>Categories:</strong> {{ getCategories }}</small>&nbsp;<small v-if="getTaxonomies"><strong>Tags:</strong> {{ getTaxonomies }}</small></p>
+		<p>
+			<small>{{ getAuthor }} - {{ getDateTime }}</small><br>
+			<small v-if="getCategories != 'Uncategorized'"><strong>Categories:</strong> {{ getCategories }}</small>&nbsp;
+			<small v-if="getTaxonomies"><strong>Tags:</strong> {{ getTaxonomies }}</small>&nbsp;
+			<small v-if="post.sticky"><strong>STICKY</strong></small>
+		</p>
 		<div v-if="!showFullContent" class="entry-excerpt" v-html="post.excerpt.rendered"></div>
 		<button v-if="!showFullContent" v-on:click="fullContentTogle">Read in Full</button>
 

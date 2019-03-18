@@ -3,6 +3,7 @@
 		<img alt="Vue logo" src="./assets/wordpress-logo-hoz-rgb.png">
 		<nav id="nav">
 			<router-link to="/">Home</router-link>
+			<router-link to="/Teams">Teams You Follow</router-link>
 		</nav>
 		<router-view/>
 	</div>

@@ -1,6 +1,10 @@
 <template lang="html">
 	<div class="team">
-		<h3> {{team.name}} </h3>
+		<h3 v-if="isSelected">
+			<router-link :to="{name: 'SingleTeam', params: {name: team.name.toLowerCase()} }" :isSelected="isSelected"> {{team.name}} </router-link>
+		</h3>
+		<h3 v-else> {{team.name}} </h3>
+
 		<team-icons :team="team" :isSelected="isSelected"></team-icons>
 		<modal-content v-if="showModal" :team="team" :isSelected="isSelected"></modal-content>
 	</div>
@@ -43,6 +47,11 @@ export default {
 		padding: 10px;
 		border: 1px solid #ccc;
 		margin: 5px;
+	}
+
+	h3 > a {
+		text-decoration: none;
+		color:inherit;
 	}
 
 	@media (min-width: 768px){

@@ -1,7 +1,8 @@
 <template lang="html">
-	<div>
+
+	<main id="followed-teams">
 		<h1>Teams You Follow</h1>
-	</div>
+	</main>
 
 </template>
 

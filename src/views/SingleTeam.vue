@@ -1,12 +1,12 @@
 <template lang="html">
-	<div class="team">
-		<section id="header">
-		<h1>{{ team.name }}</h1>
-	</section>
-	<section id="team-posts">
-		<team-post v-for="(post, index) in teamPosts" :key="index" :post="post"></team-post>
-	</section>
-	</div>
+
+	<main class="team">
+		<h1>{{ team.name }} Team</h1>
+
+		<section id="team-posts">
+			<team-post v-for="(post, index) in teamPosts" :key="index" :post="post"></team-post>
+		</section>
+	</main>
 
 </template>
 
@@ -36,8 +36,8 @@ export default {
 
 		// get the team's posts
 		fetch('https://make.wordpress.org/' + teamName + '/wp-json/wp/v2/posts?_embed')
-			.then(res => res.json())
-			.then(posts => this.teamPosts = posts)
+		.then(res => res.json())
+		.then(posts => this.teamPosts = posts)
 	}
 }
 </script>

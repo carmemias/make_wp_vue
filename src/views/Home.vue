@@ -1,6 +1,6 @@
 <template lang="html">
 	<main>
-		<h1>Stay up-to-date with Make WordPress</h1>
+		<h1>Stay Up-To-Date with Make WordPress</h1>
 		<section id="followed">
 			<h2>Teams you Follow</h2>
 			<div class="teams" :class="{noFollows: noFollows}">
@@ -9,7 +9,7 @@
 			</div>
 		</section>
 
-		<section id="remainder">
+		<section id="all">
 			<h2>All Make WordPress Teams</h2>
 			<div class="teams" v-if="teamsList">
 				<make-team v-for="(team, index) in teamsList" :key="index" :team="team" :followedTeams="followedTeams"></make-team>
@@ -59,19 +59,16 @@ export default {
 </script>
 
 <style lang="css" scoped>
-	h1{
-		background-color: #ccc;
-		padding: 100px 50px;
-	}
-	#followed .teams, #remainder .teams{
+	#followed .teams, #all .teams{
 		display: flex;
 		flex-direction: column;
 		align-items: flex-start;
 		padding: 20px;
 		margin: 5px;
+		background-color: #fff;
 	}
 
-	#remainder .teams {
+	#all .teams {
 		border: 1px solid #ccc;
 	}
 
@@ -92,7 +89,7 @@ export default {
 	}
 
 	@media (min-width: 768px){
-		#followed .teams, #remainder .teams{
+		#followed .teams, #all .teams{
 			flex-direction: row;
 			flex-wrap: wrap;
 			justify-content: center;

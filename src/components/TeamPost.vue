@@ -60,6 +60,7 @@ export default {
 	article {
 		padding:20px;
 		margin-bottom: 10px;
+		background-color: #fff;
 		border: 1px solid #ccc;
 	}
 
@@ -73,5 +74,11 @@ export default {
 		padding: 5px 10px;
 		border: 1px solid #ccc;
 		border-radius: 5px;
+		box-shadow: 3px 3px 4px #ddd;
+		transition: box-shadow 400ms ease;
+	}
+
+	button:hover {
+		box-shadow: 0 0 0 #fff;
 	}
 </style>

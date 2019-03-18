@@ -35,7 +35,7 @@ export default {
 		this.team = sortedTeams.find(team => team.name.toLowerCase() === teamName)
 
 		// get the team's posts
-		fetch('https://make.wordpress.org/' + teamName + '/wp-json/wp/v2/posts')
+		fetch('https://make.wordpress.org/' + teamName + '/wp-json/wp/v2/posts?_embed')
 			.then(res => res.json())
 			.then(posts => this.teamPosts = posts)
 	}

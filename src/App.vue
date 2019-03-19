@@ -7,7 +7,6 @@
 			<nav id="main-navigation">
 				<ul>
 					<li><router-link to="/">Home</router-link></li>
-					<li><router-link to="/teams">Teams You Follow</router-link></li>
 				</ul>
 			</nav>
 		</header>
@@ -38,7 +37,7 @@ export default {
 		}
 
 		eventBus.$on('team-toggled', team => this.toggleFollowedTeam(team))
-		
+
 		eventBus.$on('new-single-team-view', updatedFollowedTeams => {
 			this.followedTeams = updatedFollowedTeams;
 			this.saveFollowedTeams();
@@ -46,13 +45,13 @@ export default {
 	},
 	methods: {
 		toggleFollowedTeam(team){
-			if(! this.followedTeams.includes(team) ){
+			if(! this.followedTeams.map(t => t.name).includes(team.name) ){
 				// add team to followedTeams
 				this.followedTeams.push(team);
 				this.saveFollowedTeams();
 			} else {
 				// remove team from followedTeams
-				const followedIndex = this.followedTeams.indexOf(team);
+				const followedIndex = this.followedTeams.map(t => t.name).indexOf(team.name);
 				this.followedTeams.splice(followedIndex,1);
 				this.saveFollowedTeams();
 			}

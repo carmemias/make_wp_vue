@@ -25,7 +25,7 @@ export default {
 	},
 	computed: {
 		isSelected(){
-			return this.followedTeams.includes(this.team)
+			return this.followedTeams.map(team => team.name).includes(this.team.name)
 		}
 	},
 	components: {

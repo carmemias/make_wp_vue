@@ -43,16 +43,31 @@ export default {
 		this.teamsList = sortedTeams;
 		eventBus.$on('team-toggled', team => this.toggleFollowedTeam(team))
 	},
+	mounted(){
+		if (localStorage.getItem('followedTeams')) {
+      try {
+        this.followedTeams = JSON.parse(localStorage.getItem('followedTeams'));
+      } catch(e) {
+        localStorage.removeItem('followedTeams');
+      }
+    }
+	},
 	methods: {
 		toggleFollowedTeam(team){
 			if(! this.followedTeams.includes(team) ){
 				// add team to followedTeams
-				this.followedTeams.push(team)
+				this.followedTeams.push(team);
+				this.saveFollowedTeams();
 			} else {
 				// remove team from followedTeams
 				const followedIndex = this.followedTeams.indexOf(team);
-				this.followedTeams.splice(followedIndex,1)
+				this.followedTeams.splice(followedIndex,1);
+				this.saveFollowedTeams();
 			}
+		},
+		saveFollowedTeams(){
+			const parsed = JSON.stringify(this.followedTeams);
+      localStorage.setItem('followedTeams', parsed);
 		}
 	}
 }
@@ -77,7 +92,7 @@ export default {
 		min-height: 100px;
 	}
 
-	#followed .teams.noFollows{
+	#followed .teams.noFollows {
 		justify-content: center;
 		align-items: center;
 	}
@@ -93,6 +108,9 @@ export default {
 			flex-direction: row;
 			flex-wrap: wrap;
 			justify-content: flex-start;
+		}
+		#all .teams {
+			justify-content: center;
 		}
 	}
 </style>

@@ -8,11 +8,16 @@
 			<small v-if="getTaxonomies"><strong>Tags:</strong> {{ getTaxonomies }}</small>&nbsp;
 			<small v-if="post.sticky"><strong>STICKY</strong></small>
 		</p>
-		<div v-if="!showFullContent" class="entry-excerpt" v-html="post.excerpt.rendered"></div>
-		<button v-if="!showFullContent" v-on:click="fullContentTogle">Read in Full</button>
 
-		<div  v-if="showFullContent" class="entry-content" v-html="post.content.rendered"></div>
-		<button v-if="showFullContent" v-on:click="fullContentTogle">Hide Full Content</button>
+		<button v-show="!showFullContent" v-on:click="fullContentTogle">Read in Full</button>
+		<transition name="fade">
+			<div v-show="!showFullContent" class="entry-excerpt" v-html="post.excerpt.rendered"></div>
+		</transition>
+
+		<button v-show="showFullContent" v-on:click="fullContentTogle">Hide Full Content</button>
+		<transition name="fade">
+			<div  v-show="showFullContent" class="entry-content" v-html="post.content.rendered"></div>
+		</transition>
 	</article>
 
 </template>
@@ -74,7 +79,7 @@ export default {
 	}
 
 	button{
-		margin-top: 20px;
+		margin-bottom: 20px;
 		padding: 5px 10px;
 		border: 1px solid #ccc;
 		border-radius: 5px;
@@ -84,5 +89,13 @@ export default {
 
 	button:hover {
 		box-shadow: 0 0 0 #fff;
+	}
+
+	/* .fade-enter-active, .fade-leave-active { */
+	.fade-enter-active {
+		transition: opacity 400ms ease;
+	}
+	.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+		opacity: 0;
 	}
 </style>

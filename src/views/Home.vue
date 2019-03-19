@@ -92,7 +92,7 @@ export default {
 		#followed .teams, #all .teams{
 			flex-direction: row;
 			flex-wrap: wrap;
-			justify-content: center;
+			justify-content: flex-start;
 		}
 	}
 </style>

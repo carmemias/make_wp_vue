@@ -6,7 +6,7 @@
 
 					<div class="modal-header">
 						<slot name="header">
-							<button class="modal-default-button" v-on:click="closeModal">x</button>
+							<button class="modal-default-button" role="button" tabindex="0" v-on:click="closeModal" v-on:keyup.enter="closeModal">x</button>
 							<h3>{{ team.name }}</h3>
 						</slot>
 					</div>
@@ -22,7 +22,7 @@
 					<div class="modal-footer">
 						<slot name="footer">
 							<team-urls :team="team"></team-urls>
-							<button class="follow-btn" :class="{selected: isSelected }" v-on:click="toggleTeam"><span v-if="isSelected">UN</span>FOLLOW TEAM</button>
+							<button class="follow-btn" role="button" tabindex="0" :class="{selected: isSelected }" v-on:click="toggleTeam" v-on:keyup.enter="toggleTeam"><span v-if="isSelected">UN</span>FOLLOW TEAM</button>
 						</slot>
 					</div>
 				</div>

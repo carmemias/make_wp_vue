@@ -1,7 +1,7 @@
 <template lang="html">
 
 	<article :id="postId">
-		<h3 v-html="post.title.rendered"></h3>
+		<h2 v-html="post.title.rendered"></h2>
 		<p>
 			<small>{{ getAuthor }} - {{ getDateTime }}</small><br>
 			<small v-if="getCategories != 'Uncategorized'"><strong>Categories:</strong> {{ getCategories }}</small>&nbsp;
@@ -76,6 +76,7 @@ export default {
 	.entry-excerpt,
 	.entry-content {
 		text-align: left;
+		overflow-x: scroll;
 	}
 
 	button{
@@ -91,11 +92,18 @@ export default {
 		box-shadow: 0 0 0 #fff;
 	}
 
-	/* .fade-enter-active, .fade-leave-active { */
 	.fade-enter-active {
 		transition: opacity 400ms ease;
 	}
-	.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+	.fade-enter, .fade-leave-to {
 		opacity: 0;
+	}
+
+	/* Gutenberg issues */
+	.wp-block-video video {
+		max-width: 100%;
+	}
+	.wp-block-preformatted {
+		overflow-x: scroll;
 	}
 </style>

@@ -4,7 +4,7 @@
 		<header id="site-header">
 			<!-- <img alt="Vue logo" src="./assets/wordpress-logo-hoz-rgb.png"> -->
 			<div id="site-name">Stay Up-To-Date with Make WordPress</div>
-			<nav id="main-navigation">
+			<nav id="main-navigation" role="navigation">
 				<ul>
 					<li><router-link to="/">Home</router-link></li>
 				</ul>

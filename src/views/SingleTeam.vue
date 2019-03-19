@@ -34,6 +34,9 @@ export default {
 
 		this.team = sortedTeams.find(team => team.name.toLowerCase() === teamName)
 
+		// The Documentation Team API uses 'docs' instead of the full team name
+		if( teamName === 'documentation' ){ teamName = 'docs' }
+
 		// get the team's posts
 		fetch('https://make.wordpress.org/' + teamName + '/wp-json/wp/v2/posts?_embed')
 		.then(res => res.json())

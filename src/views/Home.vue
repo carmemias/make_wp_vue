@@ -77,7 +77,7 @@ export default {
 		min-height: 100px;
 	}
 
-	#followed .noFollows{
+	#followed .teams.noFollows{
 		justify-content: center;
 		align-items: center;
 	}

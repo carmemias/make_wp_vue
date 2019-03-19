@@ -12,6 +12,7 @@
 
 <script>
 import sortedTeams from '../data/data.js';
+import {eventBus} from '../main.js';
 import TeamPost from '../components/TeamPost.vue';
 
 export default {
@@ -19,6 +20,7 @@ export default {
 	components: {
 		TeamPost
 	},
+	props: ['followedTeams'],
 	data(){
 		return {
 			team: null,
@@ -32,6 +34,7 @@ export default {
 
 		teamName = teamName.toLowerCase()
 
+		// we could do the search on followedTeams only but, if a user came into a team page directly, we want to show some data rather than a message asking them to follow the team first.
 		this.team = sortedTeams.find(team => team.name.toLowerCase() === teamName)
 
 		// The Documentation Team API uses 'docs' instead of the full team name
@@ -41,6 +44,17 @@ export default {
 		fetch('https://make.wordpress.org/' + teamName + '/wp-json/wp/v2/posts?_embed')
 		.then(res => res.json())
 		.then(posts => { this.teamPosts = this.prioritiseStickies(posts) })
+	},
+	mounted(){
+		//find the current team amongst them and add timestamp for now as last viewing date.
+		if(this.followedTeams.length > 0){
+			this.followedTeams.map(team => {
+				if(team.name === this.team.name){
+					team.lastViewing = new Date();
+				}
+			})
+			eventBus.$emit('new-single-team-view', this.followedTeams);
+		}
 	},
 	methods: {
 		prioritiseStickies(posts){

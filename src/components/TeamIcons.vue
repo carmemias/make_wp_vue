@@ -18,6 +18,7 @@
 
 <script>
 import {eventBus} from '../main.js';
+// import store from '../store';
 
 export default {
 	name: 'team-icons',
@@ -32,8 +33,8 @@ export default {
 	},
 	methods: {
 		toggleTeam(){
-			this.green = !this.green;
-			eventBus.$emit('team-toggled', this.team);
+			// eventBus.$emit('team-toggled', this.team);
+			this.$store.commit('toggleFollowedTeam', this.team)
 		},
 		openTeamPage(){
 			eventBus.$emit('show-team-info', this.team);

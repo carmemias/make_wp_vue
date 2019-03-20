@@ -48,13 +48,12 @@ export default {
 			if(! this.followedTeams.map(t => t.name).includes(team.name) ){
 				// add team to followedTeams
 				this.followedTeams.push(team);
-				this.saveFollowedTeams();
 			} else {
 				// remove team from followedTeams
 				const followedIndex = this.followedTeams.map(t => t.name).indexOf(team.name);
 				this.followedTeams.splice(followedIndex,1);
-				this.saveFollowedTeams();
 			}
+			this.saveFollowedTeams();
 		},
 		saveFollowedTeams(){
 			const parsed = JSON.stringify(this.followedTeams);

@@ -56,7 +56,13 @@ export default {
 			eventBus.$emit('close-modal')
 		},
 		toggleTeam(){
-			eventBus.$emit('team-toggled', this.team);
+			// eventBus.$emit('team-toggled', this.team);
+			this.$store.dispatch('toggleFollowedTeam', {team: this.team})
+			this.saveFollowedTeams();
+		},
+		saveFollowedTeams(){ //TODO move this to right location when refactoring
+			const parsed = JSON.stringify(this.followedTeams);
+			localStorage.setItem('followedTeams', parsed);
 		}
 	}
 }

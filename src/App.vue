@@ -85,10 +85,10 @@ export default {
 		top: 0;
 		left: 0;
 		right: 0;
-		padding: 10px;
+		/* padding: 10px; */
 		padding-right:0;
 		margin-bottom: 20px;
-		background-color: #ddd;
+		background-color: #0174a2;
 		border-bottom: 1px solid #bbb;
 		box-shadow: 3px 3px 5px #ccc;
 	}
@@ -103,12 +103,14 @@ export default {
 	font-size: 1.2em;
 	font-weight: 700;
 	text-transform: uppercase;
+	color: #fff;
+	padding: 10px;
 }
 
 #main-navigation > ul {
 	display: flex;
 	list-style: none;
-	margin-left: 0;
+	margin: 5px 0;
 }
 
 #main-navigation > ul li {
@@ -117,6 +119,7 @@ export default {
 
 #main-navigation > ul li a {
 	font-size: 1.2em;
+	font-weight: 600;
 	text-decoration: none;
 	padding: 10px 20px;
 	color: #000;

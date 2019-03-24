@@ -8,6 +8,11 @@ export default new Vuex.Store({
 		followedTeams: []
 	},
 	mutations: {
+		SET_FOLLOWED_TEAMS(state, new_followed_teams){
+			state.followedTeams = new_followed_teams;
+		}
+	},
+	actions: {
 		toggleFollowedTeam(state, team){
 			if(! state.followedTeams.map(t => t.name).includes(team.name) ){
 				// add team to followedTeams
@@ -18,9 +23,6 @@ export default new Vuex.Store({
 				state.followedTeams.splice(followedIndex,1);
 			}
 		}
-	},
-	actions: {
-
 	},
 	getters: {
 

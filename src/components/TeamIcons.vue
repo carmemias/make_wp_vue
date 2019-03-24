@@ -21,10 +21,18 @@ import {eventBus} from '../main.js';
 
 export default {
 	name: 'team-icons',
-	props: ['team', 'isSelected'],
+	props: ['team'],
 	computed: {
 		followedTeams(){
 			return this.$store.getters.getFollowedTeams
+		},
+		isSelected(){
+			const followedTeams = this.$store.getters.getFollowedTeams;
+			if(followedTeams){
+				return followedTeams.map(team => team.team.name).includes(this.team.name)
+			} else {
+				return false;
+			}
 		},
 		getMoreInfoId(){
 			return 'more-info-' + this.team.name

@@ -5,8 +5,8 @@
 		</h3>
 		<h3 v-else> {{team.name}} </h3>
 
-		<team-icons :team="team" :isSelected="isSelected"></team-icons>
-		<modal-content v-if="showModal" :team="team" :isSelected="isSelected"></modal-content>
+		<team-icons :team="team"></team-icons>
+		<modal-content v-if="showModal" :team="team"></modal-content>
 	</div>
 </template>
 
@@ -26,12 +26,12 @@ export default {
 	},
 	computed: {
 		followedTeams(){
-			return this.$store.getters.getFollowedTeams.followedTeams
+			return this.$store.getters.getFollowedTeams
 		},
 		isSelected(){
-			const followedTeams = this.$store.getters.getFollowedTeams.followedTeams;
+			const followedTeams = this.$store.getters.getFollowedTeams;
 			if(followedTeams){
-				return followedTeams.map(team => team.name).includes(this.team.name)
+				return followedTeams.map(team => team.team.name).includes(this.team.name)
 			} else {
 				return false;
 			}

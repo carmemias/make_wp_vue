@@ -23,7 +23,7 @@ export default {
 	// props: ['followedTeams'],
 	computed: {
 		followedTeams(){
-			return this.$store.getters.getFollowedTeams.followedTeams
+			return this.$store.getters.getFollowedTeams
 		}
 	},
 	data(){

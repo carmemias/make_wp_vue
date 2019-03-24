@@ -23,7 +23,7 @@ export default {
 	name: "app",
 	computed: {
 		followedTeams(){
-			return this.$store.getters.getFollowedTeams.followedTeams
+			return this.$store.getters.getFollowedTeams
 		}
 	},
 	mounted(){

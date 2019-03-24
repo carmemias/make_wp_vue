@@ -37,7 +37,17 @@ import TeamUrls from './TeamUrls.vue'
 
 export default {
 	name: 'modal-content',
-	props: ['team', 'isSelected'],
+	props: ['team'],
+	computed:{
+		isSelected(){
+			const followedTeams = this.$store.getters.getFollowedTeams;
+			if(followedTeams){
+				return followedTeams.map(team => team.team.name).includes(this.team.name)
+			} else {
+				return false;
+			}
+		}
+	},
 	components: {
 		TeamUrls
 	},

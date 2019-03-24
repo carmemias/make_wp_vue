@@ -4,7 +4,8 @@
 		<section id="followed">
 			<h2>Teams you Follow</h2>
 			<div class="teams" :class="{noFollows: noFollows}">
-				<make-team v-for="(team, index) in followedTeams" :key="index" :team="team" :followedTeams="followedTeams"></make-team>
+				<!-- <make-team v-for="(team, index) in followedTeams" :key="index" :team="team" :followedTeams="followedTeams"></make-team> -->
+				<make-team v-for="(team, index) in followedTeams" :key="index" :team="team.team"></make-team>
 				<div v-if="noFollows">Like a team to start following it.</div>
 			</div>
 		</section>
@@ -12,7 +13,8 @@
 		<section id="all">
 			<h2>All Make WordPress Teams</h2>
 			<div class="teams" v-if="teamsList">
-				<make-team v-for="(team, index) in teamsList" :key="index" :team="team" :followedTeams="followedTeams"></make-team>
+				<!-- <make-team v-for="(team, index) in teamsList" :key="index" :team="team" :followedTeams="followedTeams"></make-team> -->
+				<make-team v-for="(team, index) in teamsList" :key="index" :team="team"></make-team>
 			</div>
 		</section>
 	</main>
@@ -28,17 +30,21 @@ export default {
 	data(){
 		return {
 			teamsList: [],
-			noFollows: true
+			// noFollows: true
 		}
 	},
 	computed: {
 		followedTeams(){
 			return this.$store.getters.getFollowedTeams.followedTeams
 		},
-		// noFollows(){
-		// 	return this.followedTeams.length === 0
-		// 	// return this.$store.getters.getFollowedTeams.followedTeams.length === 0
-		// }
+		noFollows(){
+			if(this.followedTeams){
+				return this.followedTeams.length === 0
+			} else {
+				return true;
+			}
+			// return this.$store.getters.getFollowedTeams.followedTeams.length === 0
+		}
 	},
 	components: {
 		MakeTeam

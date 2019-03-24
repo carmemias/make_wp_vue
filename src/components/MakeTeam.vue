@@ -29,7 +29,13 @@ export default {
 			return this.$store.getters.getFollowedTeams.followedTeams
 		},
 		isSelected(){
-			return this.followedTeams.map(team => team.name).includes(this.team.name)
+			const followedTeams = this.$store.getters.getFollowedTeams.followedTeams;
+			if(followedTeams){
+				return followedTeams.map(team => team.name).includes(this.team.name)
+			} else {
+				return false;
+			}
+			// return followedTeams.map(team => team.name).includes(this.team.name)
 		}
 	},
 	components: {

@@ -11,7 +11,8 @@
 			</nav>
 		</header>
 
-		<router-view :followedTeams="followedTeams"/>
+		<!-- <router-view :followedTeams="followedTeams"/> -->
+		<router-view/>
 
 	</div>
 </template>

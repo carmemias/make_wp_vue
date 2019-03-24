@@ -1,12 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import store from './store'
-// import Vuetify from 'vuetify'
-// import 'vuetify/dist/vuetify.min.css'
+import store from './store/index.js'
 
 Vue.use(router)
-// Vue.use(Vuetify)
+Vue.use(store)
 
 Vue.config.productionTip = false
 export const eventBus = new Vue()

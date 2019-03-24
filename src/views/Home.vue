@@ -24,16 +24,21 @@ import MakeTeam from '../components/MakeTeam.vue';
 
 export default {
 	name: "home",
-	props: ['followedTeams'],
+	// props: ['followedTeams'],
 	data(){
 		return {
-			teamsList: []
+			teamsList: [],
+			noFollows: true
 		}
 	},
 	computed: {
-		noFollows(){
-			return this.followedTeams.length === 0
-		}
+		followedTeams(){
+			return this.$store.getters.getFollowedTeams.followedTeams
+		},
+		// noFollows(){
+		// 	return this.followedTeams.length === 0
+		// 	// return this.$store.getters.getFollowedTeams.followedTeams.length === 0
+		// }
 	},
 	components: {
 		MakeTeam

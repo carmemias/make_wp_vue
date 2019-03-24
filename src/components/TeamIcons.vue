@@ -18,12 +18,14 @@
 
 <script>
 import {eventBus} from '../main.js';
-// import store from '../store';
 
 export default {
 	name: 'team-icons',
 	props: ['team', 'isSelected'],
 	computed: {
+		followedTeams(){
+			return this.$store.getters.getFollowedTeams
+		},
 		getMoreInfoId(){
 			return 'more-info-' + this.team.name
 		},
@@ -33,11 +35,15 @@ export default {
 	},
 	methods: {
 		toggleTeam(){
-			// eventBus.$emit('team-toggled', this.team);
-			this.$store.commit('toggleFollowedTeam', this.team)
+			this.$store.dispatch('toggleFollowedTeam', {team: this.team})
+			this.saveFollowedTeams();
 		},
 		openTeamPage(){
 			eventBus.$emit('show-team-info', this.team);
+		},
+		saveFollowedTeams(){ //TODO move this to right location when refactoring
+			const parsed = JSON.stringify(this.followedTeams);
+			localStorage.setItem('followedTeams', parsed);
 		}
 	}
 }

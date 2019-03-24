@@ -17,48 +17,28 @@
 </template>
 
 <script>
-import {eventBus} from './main.js';
 
 export default {
 	name: "app",
-	data(){
-		return {
-			followedTeams: []
+	computed: {
+		followedTeams(){
+			return this.$store.getters.getFollowedTeams.followedTeams
 		}
 	},
 	mounted(){
 		// get the followedTeams
 		if (localStorage.getItem('followedTeams')) {
 			try {
-				this.followedTeams = JSON.parse(localStorage.getItem('followedTeams'));
+				this.$store.dispatch('setFollowedTeams', {followedTeams: JSON.parse(localStorage.getItem('followedTeams'))})
 			} catch(e) {
 				localStorage.removeItem('followedTeams');
+
 			}
 		}
-
-		eventBus.$on('team-toggled', team => this.toggleFollowedTeam(team))
-
-		eventBus.$on('new-single-team-view', updatedFollowedTeams => {
-			this.followedTeams = updatedFollowedTeams;
-			this.saveFollowedTeams();
-		})
-	},
-	methods: {
-		toggleFollowedTeam(team){
-			if(! this.followedTeams.map(t => t.name).includes(team.name) ){
-				// add team to followedTeams
-				this.followedTeams.push(team);
-			} else {
-				// remove team from followedTeams
-				const followedIndex = this.followedTeams.map(t => t.name).indexOf(team.name);
-				this.followedTeams.splice(followedIndex,1);
-			}
-			this.saveFollowedTeams();
-		},
-		saveFollowedTeams(){
-			const parsed = JSON.stringify(this.followedTeams);
-			localStorage.setItem('followedTeams', parsed);
-		}
+		// eventBus.$on('new-single-team-view', updatedFollowedTeams => {
+		// 	this.followedTeams = updatedFollowedTeams;
+		// 	this.saveFollowedTeams();
+		// })
 	}
 }
 </script>

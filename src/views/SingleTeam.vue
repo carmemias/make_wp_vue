@@ -20,7 +20,12 @@ export default {
 	components: {
 		TeamPost
 	},
-	props: ['followedTeams'],
+	// props: ['followedTeams'],
+	computed: {
+		followedTeams(){
+			return this.$store.getters.getFollowedTeams.followedTeams
+		}
+	},
 	data(){
 		return {
 			team: null,

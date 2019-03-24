@@ -8,6 +8,9 @@ export default new Vuex.Store({
 		followedTeams: []
 	},
 	mutations: {
+		SET_FOLLOWED_TEAMS(state, all_followed_teams){
+			state.followedTeams = all_followed_teams;
+		},
 		ADD_FOLLOWED_TEAM(state, new_followed_team){
 			state.followedTeams.push(new_followed_team);
 		},
@@ -17,17 +20,22 @@ export default new Vuex.Store({
 		}
 	},
 	actions: {
-		toggleFollowedTeam(context, state, team){
+		setFollowedTeams({commit}, followedTeams){
+			commit('SET_FOLLOWED_TEAMS', followedTeams)
+		},
+		toggleFollowedTeam({commit, state}, team){
 			if(! state.followedTeams.map(t => t.name).includes(team.name) ){
 				// add team to followedTeams
-				context.commit('ADD_FOLLOWED_TEAM', team);
+				commit('ADD_FOLLOWED_TEAM', team);
 			} else {
 				// remove team from followedTeams
-				context.commit('REMOVE_FOLLOWED_TEAM', team);
+				commit('REMOVE_FOLLOWED_TEAM', team);
 			}
 		}
 	},
 	getters: {
-
+		getFollowedTeams(state){
+			return state.followedTeams;
+		}
 	}
 })

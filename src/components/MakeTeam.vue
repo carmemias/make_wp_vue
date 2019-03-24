@@ -17,13 +17,17 @@ import ModalContent from './ModalContent.vue'
 
 export default {
 	name: "make-team",
-	props: ['team', 'followedTeams'],
+	props: ['team'],
+	// props: ['team', 'followedTeams'],
 	data(){
 		return {
 			showModal: false
 		}
 	},
 	computed: {
+		followedTeams(){
+			return this.$store.getters.getFollowedTeams.followedTeams
+		},
 		isSelected(){
 			return this.followedTeams.map(team => team.name).includes(this.team.name)
 		}

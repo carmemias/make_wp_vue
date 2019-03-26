@@ -1,6 +1,6 @@
 <template lang="html">
 	<div class="actions">
-		<svg class="more-info" v-on:click="openTeamPage" v-on:keyup.enter="openTeamPage" :aria-labelledby="getMoreInfoId" role="button" tabindex="0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 333 333" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd">
+		<svg class="more-info" v-on:click="openTeamModal" v-on:keyup.enter="openTeamModal" :aria-labelledby="getMoreInfoId" role="button" tabindex="0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" version="1.1" style="shape-rendering:geometricPrecision;text-rendering:geometricPrecision;image-rendering:optimizeQuality;" viewBox="0 0 333 333" x="0px" y="0px" fill-rule="evenodd" clip-rule="evenodd">
 			<title :id="getMoreInfoId">Click to view team details</title>
 			<g>
 				<path d="M48 8l238 0c12,0 22,10 22,23l0 271c0,13 -10,23 -22,23l-238 0c-13,0 -23,-10 -23,-23l0 -271c0,-13 10,-23 23,-23zm35 58l26 0 0 26 -26 0 0 -26zm0 175l26 0 0 26 -26 0 0 -26zm49 0l119 0 0 26 -119 0 0 -26zm-49 -58l26 0 0 26 -26 0 0 -26zm49 0l119 0 0 26 -119 0 0 -26zm-49 -59l26 0 0 26 -26 0 0 -26zm49 0l119 0 0 26 -119 0 0 -26zm0 -58l119 0 0 26 -119 0 0 -26zm-78 -28l225 0 0 258 -225 0 0 -258z"></path>
@@ -17,8 +17,6 @@
 </template>
 
 <script>
-import {eventBus} from '../main.js';
-
 export default {
 	name: 'team-icons',
 	props: ['team'],
@@ -46,8 +44,8 @@ export default {
 			this.$store.dispatch('toggleFollowedTeam', this.team);
 			this.saveFollowedTeams();
 		},
-		openTeamPage(){
-			eventBus.$emit('show-team-info', this.team);
+		openTeamModal(){
+			this.$store.dispatch('setShowModal', this.team.name);
 		},
 		saveFollowedTeams(){ //TODO move this to right location when refactoring
 			const parsed = JSON.stringify(this.followedTeams);

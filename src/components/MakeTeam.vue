@@ -6,25 +6,24 @@
 		<h3 v-else> {{team.name}} </h3>
 
 		<team-icons :team="team"></team-icons>
-		<modal-content v-if="showModal" :team="team"></modal-content>
+		<modal-content v-if="showThisModal" :team="team"></modal-content>
 	</div>
 </template>
 
 <script>
-import {eventBus} from '../main.js';
 import TeamIcons from './TeamIcons.vue'
 import ModalContent from './ModalContent.vue'
 
 export default {
 	name: "make-team",
 	props: ['team'],
-	// props: ['team', 'followedTeams'],
-	data(){
-		return {
-			showModal: false
-		}
-	},
 	computed: {
+		showModal(){
+			return this.$store.getters.getShowModal;
+		},
+		showThisModal(){
+			return this.showModal === this.team.name;
+		},
 		followedTeams(){
 			return this.$store.getters.getFollowedTeams
 		},
@@ -35,16 +34,11 @@ export default {
 			} else {
 				return false;
 			}
-			// return followedTeams.map(team => team.name).includes(this.team.name)
 		}
 	},
 	components: {
 		TeamIcons,
 		ModalContent
-	},
-	created(){
-		eventBus.$on('show-team-info', (team) => { if(this.team.name === team.name){ this.showModal = true } })
-		eventBus.$on('close-modal', () => { this.showModal = false })
 	}
 }
 </script>

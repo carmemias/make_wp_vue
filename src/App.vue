@@ -11,7 +11,6 @@
 			</nav>
 		</header>
 
-		<!-- <router-view :followedTeams="followedTeams"/> -->
 		<router-view/>
 
 	</div>
@@ -35,10 +34,6 @@ export default {
 				localStorage.removeItem('followedTeams');
 			}
 		}
-		// eventBus.$on('new-single-team-view', updatedFollowedTeams => {
-		// 	this.followedTeams = updatedFollowedTeams;
-		// 	this.saveFollowedTeams();
-		// })
 	}
 }
 </script>

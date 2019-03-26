@@ -12,7 +12,6 @@
 
 <script>
 import sortedTeams from '../data/data.js';
-import {eventBus} from '../main.js';
 import TeamPost from '../components/TeamPost.vue';
 
 export default {
@@ -20,7 +19,6 @@ export default {
 	components: {
 		TeamPost
 	},
-	// props: ['followedTeams'],
 	computed: {
 		followedTeams(){
 			return this.$store.getters.getFollowedTeams
@@ -58,7 +56,7 @@ export default {
 					team.lastViewing = new Date();
 				}
 			})
-			eventBus.$emit('new-single-team-view', this.followedTeams);
+			this.saveFollowedTeams();
 		}
 	},
 	methods: {
@@ -68,6 +66,10 @@ export default {
 			} );
 
 			return sortedPosts;
+		},
+		saveFollowedTeams(){ //TODO move this to right location when refactoring
+			const parsed = JSON.stringify(this.followedTeams);
+			localStorage.setItem('followedTeams', parsed);
 		}
 	}
 }

@@ -7,7 +7,8 @@ export default new Vuex.Store({
 	state: {
 		followedTeams: [],
 		followedTeamNames: [],
-		currentTeam: null
+		currentTeam: null,
+		showModal: ''
 	},
 	mutations: {
 		SET_FOLLOWED_TEAMS(state, all_followed_teams){
@@ -21,6 +22,12 @@ export default new Vuex.Store({
 			const followedIndex = state.followedTeamNames.indexOf(team_to_remove.name);
 			// state.followedTeams.followedTeams.splice(followedIndex,1);
 			state.followedTeams.splice(followedIndex,1);
+		},
+		SET_SHOW_MODAL(state, teamName){
+			state.showModal = teamName;
+		},
+		RESET_SHOW_MODAL(state){
+			state.showModal = '';
 		}
 	},
 	actions: {
@@ -40,12 +47,21 @@ export default new Vuex.Store({
 				// remove team from followedTeams
 				commit('REMOVE_FOLLOWED_TEAM', team);
 			}
+		},
+		setShowModal({commit}, teamName){
+			commit('SET_SHOW_MODAL', teamName);
+		},
+		resetShowModal({commit}){
+			commit('RESET_SHOW_MODAL');
 		}
 	},
 	getters: {
 		getFollowedTeams(state){
 			// return state.followedTeams.followedTeams;
 			return state.followedTeams;
+		},
+		getShowModal(state){
+			return state.showModal;
 		}
 	}
 })

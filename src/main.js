@@ -7,7 +7,6 @@ Vue.use(router)
 Vue.use(store)
 
 Vue.config.productionTip = false
-export const eventBus = new Vue()
 
 new Vue({
 	router,

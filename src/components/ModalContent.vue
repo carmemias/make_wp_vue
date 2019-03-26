@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import {eventBus} from '../main.js'
 import TeamUrls from './TeamUrls.vue'
 
 export default {
@@ -53,7 +52,7 @@ export default {
 	},
 	methods: {
 		closeModal(){
-			eventBus.$emit('close-modal')
+			this.$store.dispatch('resetShowModal');
 		},
 		toggleTeam(){
 			this.$store.dispatch('toggleFollowedTeam', this.team)

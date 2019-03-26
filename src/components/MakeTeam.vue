@@ -30,8 +30,8 @@ export default {
 		},
 		isSelected(){
 			const followedTeams = this.$store.getters.getFollowedTeams;
-			if(followedTeams){
-				return followedTeams.map(team => team.team.name).includes(this.team.name)
+			if(followedTeams.length != 0){
+				return followedTeams.map(team => team.name).includes(this.team.name)
 			} else {
 				return false;
 			}

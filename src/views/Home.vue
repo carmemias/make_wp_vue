@@ -4,7 +4,7 @@
 		<section id="followed">
 			<h2>Teams you Follow</h2>
 			<div class="teams" :class="{noFollows: noFollows}">
-				<make-team v-for="(team, index) in followedTeams" :key="index" :team="team.team"></make-team>
+				<make-team v-for="(team, index) in followedTeams" :key="index" :team="team"></make-team>
 				<div v-if="noFollows">Like a team to start following it.</div>
 			</div>
 		</section>

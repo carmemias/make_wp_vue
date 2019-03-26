@@ -41,8 +41,8 @@ export default {
 	computed:{
 		isSelected(){
 			const followedTeams = this.$store.getters.getFollowedTeams;
-			if(followedTeams){
-				return followedTeams.map(team => team.team.name).includes(this.team.name)
+			if(followedTeams.length != 0){
+				return followedTeams.map(team => team.name).includes(this.team.name)
 			} else {
 				return false;
 			}
@@ -56,12 +56,12 @@ export default {
 			eventBus.$emit('close-modal')
 		},
 		toggleTeam(){
-			// eventBus.$emit('team-toggled', this.team);
-			this.$store.dispatch('toggleFollowedTeam', {team: this.team})
+			this.$store.dispatch('toggleFollowedTeam', this.team)
 			this.saveFollowedTeams();
 		},
 		saveFollowedTeams(){ //TODO move this to right location when refactoring
-			const parsed = JSON.stringify(this.followedTeams);
+			const followedTeams = this.$store.getters.getFollowedTeams;
+			const parsed = JSON.stringify(followedTeams);
 			localStorage.setItem('followedTeams', parsed);
 		}
 	}

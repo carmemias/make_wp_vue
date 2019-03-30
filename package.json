@@ -3,20 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "description": "Stay up-to-date with Make WordPress team discussions and developments",
-  "keywords": [
-    "WordPress",
-    "Contributor",
-    "Make WordPress",
-    "REST API",
-    "Vuejs"
-  ],
   "author": "Carme Mias",
-  "repository": "https://github.com/carmemias/make_wp_vue.git",
-  "license": "GPL-2.0-or-later",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "test:e2e": "vue-cli-service test:e2e",
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
@@ -31,6 +23,7 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.5.0",
+    "@vue/cli-plugin-e2e-cypress": "^3.5.1",
     "@vue/cli-plugin-eslint": "^3.5.0",
     "@vue/cli-plugin-unit-mocha": "^3.5.0",
     "@vue/cli-service": "^3.5.3",
@@ -38,6 +31,7 @@
     "babel-eslint": "^10.0.1",
     "chai": "^4.1.2",
     "css-loader": "^2.1.1",
+    "cypress": "^3.2.0",
     "eslint": "^5.8.0",
     "eslint-plugin-vue": "^5.0.0",
     "vue-template-compiler": "^2.5.21"
@@ -65,5 +59,14 @@
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
-  ]
+  ],
+  "keywords": [
+    "WordPress",
+    "Contributor",
+    "Make WordPress",
+    "REST API",
+    "Vuejs"
+  ],
+  "license": "GPL-2.0-or-later",
+  "repository": "https://github.com/carmemias/make_wp_vue.git"
 }

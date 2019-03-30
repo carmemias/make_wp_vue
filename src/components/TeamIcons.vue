@@ -21,6 +21,9 @@ export default {
 	name: 'team-icons',
 	props: ['team'],
 	computed: {
+		followedTeams(){
+			return this.$store.getters.getFollowedTeams
+		},
 		isSelected(){
 			const followedTeams = this.$store.getters.getFollowedTeams; //we don't want to change the original followedTeams state
 			if(followedTeams.length != 0){
@@ -33,7 +36,7 @@ export default {
 			return 'more-info-' + this.team.name
 		},
 		getFollowIconId(){
-			return 'follow0icon-' + this.team.name
+			return 'follow-icon-' + this.team.name
 		}
 	},
 	methods: {

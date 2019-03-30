@@ -1,5 +1,5 @@
 <template lang="html">
-	<div class="team">
+	<div class="team" :class="team.name">
 		<h3 v-if="isSelected">
 			<router-link :to="{name: 'SingleTeam', params: {name: team.name.toLowerCase()} }" :isSelected="isSelected"> {{team.name}} </router-link>
 		</h3>

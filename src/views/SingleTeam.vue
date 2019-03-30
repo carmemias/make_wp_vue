@@ -44,9 +44,11 @@ export default {
 		if( teamName === 'documentation' ){ teamName = 'docs' }
 
 		// get the team's posts
-		fetch('https://make.wordpress.org/' + teamName + '/wp-json/wp/v2/posts?_embed')
-		.then(res => res.json())
-		.then(posts => { this.teamPosts = this.prioritiseStickies(posts) })
+		this.axios.get('https://make.wordpress.org/' + teamName + '/wp-json/wp/v2/posts?_embed')
+		.then(response => { this.teamPosts = this.prioritiseStickies(response.data) })
+		.catch(e => {
+      this.errors.push(e)
+    })
 	},
 	mounted(){
 		//find the current team amongst them and set last viewing date to "now".

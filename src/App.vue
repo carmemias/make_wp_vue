@@ -20,13 +20,8 @@
 
 export default {
 	name: "app",
-	computed: {
-		followedTeams(){
-			return this.$store.getters.getFollowedTeams
-		}
-	},
 	mounted(){
-		// get the followedTeams
+		// get the followedTeams from localStorage
 		if (localStorage.getItem('followedTeams')) {
 			try {
 				this.$store.dispatch( 'setFollowedTeams', JSON.parse(localStorage.getItem('followedTeams')) )

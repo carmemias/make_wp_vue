@@ -24,9 +24,6 @@ export default {
 		showThisModal(){
 			return this.showModal === this.team.name;
 		},
-		followedTeams(){
-			return this.$store.getters.getFollowedTeams
-		},
 		isSelected(){
 			const followedTeams = this.$store.getters.getFollowedTeams;
 			if(followedTeams.length != 0){

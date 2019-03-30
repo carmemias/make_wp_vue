@@ -49,7 +49,7 @@ export default {
 		.then(posts => { this.teamPosts = this.prioritiseStickies(posts) })
 	},
 	mounted(){
-		//find the current team amongst them and add timestamp for now as last viewing date.
+		//find the current team amongst them and set last viewing date to "now".
 		if(this.followedTeams.length > 0){
 			this.followedTeams.map(team => {
 				if(team.name === this.team.name){

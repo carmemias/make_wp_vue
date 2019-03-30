@@ -9,12 +9,12 @@
 			<small v-if="post.sticky"><strong>STICKY</strong></small>
 		</p>
 
-		<button v-show="!showFullContent" v-on:click="fullContentTogle">Read in Full</button>
+		<button id="read-in-full" v-show="!showFullContent" v-on:click="fullContentTogle">Read in Full</button>
 		<transition name="fade">
 			<div v-show="!showFullContent" class="entry-excerpt" v-html="post.excerpt.rendered"></div>
 		</transition>
 
-		<button v-show="showFullContent" v-on:click="fullContentTogle">Hide Full Content</button>
+		<button id="hide-full-content" v-show="showFullContent" v-on:click="fullContentTogle">Hide Full Content</button>
 		<transition name="fade">
 			<div  v-show="showFullContent" class="entry-content" v-html="post.content.rendered"></div>
 		</transition>

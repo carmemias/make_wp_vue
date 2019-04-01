@@ -15,12 +15,10 @@ export default new Vuex.Store({
 			state.followedTeams = all_followed_teams;
 		},
 		ADD_FOLLOWED_TEAM(state, new_followed_team){
-			// state.followedTeams.followedTeams.push(new_followed_team);
 			state.followedTeams.push(new_followed_team);
 		},
 		REMOVE_FOLLOWED_TEAM(state, team_to_remove){
 			const followedIndex = state.followedTeamNames.indexOf(team_to_remove.name);
-			// state.followedTeams.followedTeams.splice(followedIndex,1);
 			state.followedTeams.splice(followedIndex,1);
 		},
 		SET_SHOW_MODAL(state, teamName){
@@ -35,7 +33,6 @@ export default new Vuex.Store({
 			// get the followedTeams from localStorage
 			if (localStorage.getItem('followedTeams')) {
 				try {
-					// this.$store.dispatch( 'setFollowedTeams', JSON.parse(localStorage.getItem('followedTeams')) )
 					commit('SET_FOLLOWED_TEAMS', JSON.parse(localStorage.getItem('followedTeams')) )
 				} catch(e) {
 					localStorage.removeItem('followedTeams');
@@ -43,7 +40,7 @@ export default new Vuex.Store({
 			}
 		},
 		saveFollowedTeams(followedTeams){
-			const parsed = JSON.stringify(followedTeams);
+			const parsed = JSON.stringify(followedTeams.getters.getFollowedTeams);
 			localStorage.setItem('followedTeams', parsed);
 		},
 		setFollowedTeams({commit}, followedTeams){
@@ -72,7 +69,6 @@ export default new Vuex.Store({
 	},
 	getters: {
 		getFollowedTeams(state){
-			// return state.followedTeams.followedTeams;
 			return state.followedTeams;
 		},
 		getShowModal(state){

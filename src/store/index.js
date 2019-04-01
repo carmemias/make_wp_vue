@@ -31,6 +31,21 @@ export default new Vuex.Store({
 		}
 	},
 	actions: {
+		checkStorage({commit}){
+			// get the followedTeams from localStorage
+			if (localStorage.getItem('followedTeams')) {
+				try {
+					// this.$store.dispatch( 'setFollowedTeams', JSON.parse(localStorage.getItem('followedTeams')) )
+					commit('SET_FOLLOWED_TEAMS', JSON.parse(localStorage.getItem('followedTeams')) )
+				} catch(e) {
+					localStorage.removeItem('followedTeams');
+				}
+			}
+		},
+		saveFollowedTeams(followedTeams){
+			const parsed = JSON.stringify(followedTeams);
+			localStorage.setItem('followedTeams', parsed);
+		},
 		setFollowedTeams({commit}, followedTeams){
 			commit('SET_FOLLOWED_TEAMS', followedTeams)
 		},

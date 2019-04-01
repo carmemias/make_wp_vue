@@ -41,15 +41,13 @@ export default {
 	},
 	methods: {
 		toggleTeam(){
+			//update the state
 			this.$store.dispatch('toggleFollowedTeam', this.team);
-			this.saveFollowedTeams();
+			//save to browser storage
+			this.$store.dispatch('saveFollowedTeams', this.followedTeams);
 		},
 		openTeamModal(){
 			this.$store.dispatch('setShowModal', this.team.name);
-		},
-		saveFollowedTeams(){ //TODO move this to right location when refactoring
-			const parsed = JSON.stringify(this.followedTeams);
-			localStorage.setItem('followedTeams', parsed);
 		}
 	}
 }

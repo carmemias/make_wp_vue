@@ -58,7 +58,8 @@ export default {
 					team.lastViewing = new Date();
 				}
 			})
-			this.saveFollowedTeams();
+		//save to browser storage
+		this.$store.dispatch('saveFollowedTeams', this.followedTeams);
 		}
 	},
 	methods: {
@@ -68,10 +69,6 @@ export default {
 			} );
 
 			return sortedPosts;
-		},
-		saveFollowedTeams(){ //TODO move this to right location when refactoring
-			const parsed = JSON.stringify(this.followedTeams);
-			localStorage.setItem('followedTeams', parsed);
 		}
 	}
 }

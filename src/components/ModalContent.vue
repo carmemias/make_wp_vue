@@ -55,13 +55,11 @@ export default {
 			this.$store.dispatch('resetShowModal');
 		},
 		toggleTeam(){
+			//update the state
 			this.$store.dispatch('toggleFollowedTeam', this.team)
-			this.saveFollowedTeams();
-		},
-		saveFollowedTeams(){ //TODO move this to right location when refactoring
+			//save to browser storage
 			const followedTeams = this.$store.getters.getFollowedTeams;
-			const parsed = JSON.stringify(followedTeams);
-			localStorage.setItem('followedTeams', parsed);
+			this.$store.dispatch('saveFollowedTeams', followedTeams);
 		}
 	}
 }

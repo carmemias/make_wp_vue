@@ -21,14 +21,7 @@
 export default {
 	name: "app",
 	mounted(){
-		// get the followedTeams from localStorage
-		if (localStorage.getItem('followedTeams')) {
-			try {
-				this.$store.dispatch( 'setFollowedTeams', JSON.parse(localStorage.getItem('followedTeams')) )
-			} catch(e) {
-				localStorage.removeItem('followedTeams');
-			}
-		}
+		this.$store.dispatch('checkStorage');
 	}
 }
 </script>

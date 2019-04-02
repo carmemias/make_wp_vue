@@ -99,6 +99,17 @@ export default {
 		opacity: 0;
 	}
 
+	/* Post Excerpt Social links */
+	.sd-social.sd-sharing ul {
+		display: flex;
+		list-style: none;
+		padding-left:0;
+	}
+	.sd-social.sd-sharing ul > li {
+		margin-right: 10px;
+	}
+
+
 	/* Gutenberg issues */
 	.wp-block-video video {
 		max-width: 100%;

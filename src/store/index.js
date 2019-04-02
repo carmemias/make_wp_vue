@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import localforage from 'localforage'
 
 Vue.use(Vuex)
 
@@ -30,18 +31,42 @@ export default new Vuex.Store({
 	},
 	actions: {
 		checkStorage({commit}){
-			// get the followedTeams from localStorage
-			if (localStorage.getItem('followedTeams')) {
-				try {
-					commit('SET_FOLLOWED_TEAMS', JSON.parse(localStorage.getItem('followedTeams')) )
-				} catch(e) {
-					localStorage.removeItem('followedTeams');
+			if (!('indexedDB' in window)) {
+				// get the followedTeams from localStorage
+				if (localStorage.getItem('followedTeams')) {
+					try {
+						commit('SET_FOLLOWED_TEAMS', JSON.parse(localStorage.getItem('followedTeams')) )
+					} catch(e) {
+						localStorage.removeItem('followedTeams');
+					}
 				}
 			}
+
+			//if indexedDB mkwp exists and followedTeams is not empty
+			//get the keyvaluepairs from the existing followedTeams
+			//loop through the individual values to create a single array of objects
+			//assign this object to state.followedTeams
+
 		},
 		saveFollowedTeams(followedTeams){
-			const parsed = JSON.stringify(followedTeams.getters.getFollowedTeams);
-			localStorage.setItem('followedTeams', parsed);
+			if (!('indexedDB' in window)) {
+				// use localStorage if browser does not support IndexedDB
+				const parsed = JSON.stringify(followedTeams.getters.getFollowedTeams);
+				localStorage.setItem('followedTeams', parsed);
+			}
+
+			followedTeams.getters.getFollowedTeams.forEach((team) => {
+				return localforage.setItem( team.name , JSON.stringify(team))
+								.then((value) => { return value; })
+								.catch((err) => { throw new Error(err); })
+			})
+			//
+			// return localforage.setItem('followedTeams', parsed)
+			// 				.then((value) => { return value; })
+			// 				.catch((err) => { throw new Error(err); })
+		},
+		updateFollowedTeam(team){
+
 		},
 		setFollowedTeams({commit}, followedTeams){
 			commit('SET_FOLLOWED_TEAMS', followedTeams)

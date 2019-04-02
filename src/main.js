@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+import localforage from 'localforage'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import router from './router'
@@ -10,6 +11,10 @@ Vue.use(router)
 Vue.use(store)
 
 Vue.config.productionTip = false
+localforage.config({
+	name: 'mkwp',
+	storeName: 'followedTeams'
+})
 
 new Vue({
 	router,

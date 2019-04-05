@@ -30,23 +30,29 @@ export default new Vuex.Store({
 		}
 	},
 	actions: {
-		checkStorage({commit}){
-			if (!('indexedDB' in window)) {
-				// get the followedTeams from localStorage
-				if (localStorage.getItem('followedTeams')) {
-					try {
-						commit('SET_FOLLOWED_TEAMS', JSON.parse(localStorage.getItem('followedTeams')) )
-					} catch(e) {
-						localStorage.removeItem('followedTeams');
+		checkStorage({commit}, state){
+			if( !state.followedTeams || state.followedTeams.length === 0 ){
+				if (!('indexedDB' in window)) {
+					// get the followedTeams from localStorage
+					if (localStorage.getItem('followedTeams')) {
+						try {
+							commit('SET_FOLLOWED_TEAMS', JSON.parse(localStorage.getItem('followedTeams')) )
+						} catch(e) {
+							localStorage.removeItem('followedTeams');
+						}
 					}
+				} else {
+					const result = [];
+					//get the keyvaluepairs from indexedDB's existing followedTeams
+					//loop through the individual values to create a single array of objects
+					localforage.iterate( function(value){
+						result.push(value);
+					})
+					return result;
+
+					//assign this object to state.followedTeams
 				}
 			}
-
-			//if indexedDB mkwp exists and followedTeams is not empty
-			//get the keyvaluepairs from the existing followedTeams
-			//loop through the individual values to create a single array of objects
-			//assign this object to state.followedTeams
-
 		},
 		saveFollowedTeams(followedTeams){
 			if (!('indexedDB' in window)) {
@@ -57,17 +63,17 @@ export default new Vuex.Store({
 
 			followedTeams.getters.getFollowedTeams.forEach((team) => {
 				return localforage.setItem( team.name , JSON.stringify(team))
-								.then((value) => { return value; })
-								.catch((err) => { throw new Error(err); })
+				.then((value) => { return value; })
+				.catch((err) => { throw new Error(err); })
 			})
 			//
 			// return localforage.setItem('followedTeams', parsed)
 			// 				.then((value) => { return value; })
 			// 				.catch((err) => { throw new Error(err); })
 		},
-		updateFollowedTeam(team){
-
-		},
+		// updateFollowedTeam(team){
+		//
+		// },
 		setFollowedTeams({commit}, followedTeams){
 			commit('SET_FOLLOWED_TEAMS', followedTeams)
 		},

@@ -4,6 +4,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import router from './router'
 import store from './store/index.js'
+import './registerServiceWorker'
 
 Vue.use(VueAxios, axios)
 Vue.use(router)

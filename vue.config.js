@@ -3,7 +3,7 @@
 // vue.config.js
 module.exports = {
 	// ...other vue-cli plugin options...
-	//for testing production publicPath: '/mkwp/',
+	// publicPath: '/mkwp/', //for testing production
 	pwa: {
 		// configure the workbox plugin
 		// workboxPluginMode: 'GenerateSW'

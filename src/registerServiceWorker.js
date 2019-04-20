@@ -3,32 +3,34 @@
 import { register } from 'register-service-worker'
 
 if (process.env.NODE_ENV === 'production') {
-  // register(`${process.env.BASE_URL}service-worker.js`, {
+	// register(`${process.env.BASE_URL}service-worker.js`, {
 	// register(`https://wip.carmemias.com/mkwp/service-worker.js`, {
 	register(`http://localhost/service-worker.js`, {
-    ready () {
-      console.log(
-        'App is being served from cache by a service worker.\n' +
-        'For more details, visit https://goo.gl/AFskqB'
-      )
-    },
-    registered () {
-      console.log('Service worker has been registered.')
-    },
-    cached () {
-      console.log('Content has been cached for offline use.')
-    },
-    updatefound () {
-      console.log('New content is downloading.')
-    },
-    updated () {
-      console.log('New content is available; please refresh.')
-    },
-    offline () {
-      console.log('No internet connection found. App is running in offline mode.')
-    },
-    error (error) {
-      console.error('Error during service worker registration:', error)
-    }
-  })
+		ready () {
+			console.log(
+				'App is being served from cache by a service worker.\n' +
+				'For more details, visit https://goo.gl/AFskqB'
+			)
+		},
+		registered () {
+			console.log('Service worker has been registered.')
+		},
+		cached () {
+			console.log('Content has been cached for offline use.')
+		},
+		updatefound () {
+			console.log('New content is downloading.')
+		},
+		updated (registration) {
+			console.log("New content is available; please refresh.");
+			let worker = registration.waiting;
+			worker.postMessage({action: 'skipWaiting'});
+		},
+		offline () {
+			console.log('No internet connection found. App is running in offline mode.')
+		},
+		error (error) {
+			console.error('Error during service worker registration:', error)
+		}
+	})
 }

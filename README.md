@@ -3,6 +3,9 @@
 April 2019
 
 **CURRENTLY UNDER DEVELOPMENT**
+This project can be preview on my [test site](https://wip.carmemias.com/mkwp/#/).
+
+## Description
 
 Vue.js Progressive Web App to allow the WordPress community to stay up-to-date with the Open Source Contributor teams.
 
@@ -31,14 +34,11 @@ _Some of the Design Team latest Blog Posts_
 
 ## Technical Description
 
-The app uses the [Make WordPress](https://make.wordpress.org) **Rest API** and it is built with the **Vue CLI**, **Vuex**, **Axios**, **Vue Router** and, currently, **localStorage**.
+The app uses the [Make WordPress](https://make.wordpress.org) **Rest API** and it is built with the **Vue CLI**, **Vuex**, **Axios**, **Vue Router**, **Vue PWA** and **localStorage**.
 
-Work is underway to migrate to **IndexedDB** and convert the system to a **PWA** in order to make it available off-line and provide notifications.
+Work is underway to improve the off-line functionality and provide notifications.
 
-**Cypress** is used for end-to-end testing and **Mocha** for unit tests.
-
-Expected to be live by mid-May 2019.
-
+Tests are done with **Cypress** for end-to-end and **Mocha** for unit.
 
 ## Project setup
 

@@ -104,4 +104,15 @@ main {
 h1, h2, h3 {
 	margin: 20px 0;
 }
+
+
+	/* Post Excerpt Social links */
+	.sd-social.sd-sharing ul {
+		display: flex;
+		list-style: none;
+		padding-left:0;
+	}
+	.sd-social.sd-sharing ul > li {
+		margin-right: 10px;
+	}
 </style>

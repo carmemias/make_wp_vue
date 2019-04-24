@@ -30,8 +30,10 @@ export default new Vuex.Store({
 		}
 	},
 	actions: {
-		checkStorage({commit}, state){
+		checkStorage({commit, state}){
 			if( !state.followedTeams || state.followedTeams.length === 0 ){
+
+				// if no followedTeams in state, get them from browser memory
 				if (!('indexedDB' in window)) {
 					// get the followedTeams from localStorage
 					if (localStorage.getItem('followedTeams')) {
@@ -40,17 +42,19 @@ export default new Vuex.Store({
 						} catch(e) {
 							localStorage.removeItem('followedTeams');
 						}
+					} else {
+						//TOBETESTED
+						// get them from indexedDB
+						const result = [];
+						//get the keyvaluepairs from indexedDB's existing followedTeams
+						//loop through the individual values to create a single array of objects
+						localforage.iterate( function(value){
+							result.push(value);
+						})
+						//assign this object to state.followedTeams
+						// return result;
+						commit('SET_FOLLOWED_TEAMS', JSON.parse(result) )
 					}
-				} else {
-					const result = [];
-					//get the keyvaluepairs from indexedDB's existing followedTeams
-					//loop through the individual values to create a single array of objects
-					localforage.iterate( function(value){
-						result.push(value);
-					})
-					return result;
-
-					//assign this object to state.followedTeams
 				}
 			}
 		},
@@ -59,13 +63,26 @@ export default new Vuex.Store({
 				// use localStorage if browser does not support IndexedDB
 				const parsed = JSON.stringify(followedTeams.getters.getFollowedTeams);
 				localStorage.setItem('followedTeams', parsed);
+
+			} else {
+
+				followedTeams.getters.getFollowedTeams.forEach((team) => {
+					return localforage.setItem( team.name , JSON.stringify(team))
+					.then((value) => {
+						/* eslint-disable */
+						console.log("success:", value);
+						// return value;
+					})
+					.catch((err) => {
+
+						console.log("error", err);
+						/* eslint-enable */
+						// Error(err);
+					})
+				})
 			}
 
-			followedTeams.getters.getFollowedTeams.forEach((team) => {
-				return localforage.setItem( team.name , JSON.stringify(team))
-				.then((value) => { return value; })
-				.catch((err) => { throw new Error(err); })
-			})
+
 			//
 			// return localforage.setItem('followedTeams', parsed)
 			// 				.then((value) => { return value; })

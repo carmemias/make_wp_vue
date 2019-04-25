@@ -5,6 +5,9 @@ April 2019
 **CURRENTLY UNDER DEVELOPMENT**
 This project can be preview on my [test site](https://wip.carmemias.com/mkwp/#/).
 
+![Lighthouse report summary](./img/4.lighthouse-report-summary.png)
+_Lighthouse report summary. Run from the app's test site on Thurs. 25 April 2019_
+
 ## Description
 
 Vue.js Progressive Web App to allow the WordPress community to stay up-to-date with the Open Source Contributor teams.

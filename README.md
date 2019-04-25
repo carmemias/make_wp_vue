@@ -3,7 +3,7 @@
 April 2019
 
 **CURRENTLY UNDER DEVELOPMENT**
-This project can be preview on my [test site](https://wip.carmemias.com/mkwp/#/).
+This project can be previewed on my [test site](https://wip.carmemias.com/mkwp/#/).
 
 ![Lighthouse report summary](./img/4.lighthouse-report-summary.png)
 _Lighthouse report summary. Run from the app's test site on Thurs. 25 April 2019_

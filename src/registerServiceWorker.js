@@ -4,8 +4,8 @@ import { register } from 'register-service-worker'
 
 if (process.env.NODE_ENV === 'production') {
 	// register(`${process.env.BASE_URL}service-worker.js`, {
-	register(`https://wip.carmemias.com/mkwp/service-worker.js`, {
-	// register(`http://localhost/service-worker.js`, {
+	// register(`https://wip.carmemias.com/mkwp/service-worker.js`, {
+	register(`http://localhost/service-worker.js`, {
 		ready () {
 			console.log(
 				'App is being served from cache by a service worker.\n' +

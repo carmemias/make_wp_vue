@@ -19,18 +19,10 @@
 <script>
 export default {
 	name: 'team-icons',
-	props: ['team'],
+	props: ['team', 'isSelected'],
 	computed: {
 		followedTeams(){
 			return this.$store.getters.getFollowedTeams
-		},
-		isSelected(){
-			const followedTeams = this.$store.getters.getFollowedTeams; //we don't want to change the original followedTeams state
-			if(followedTeams.length != 0){
-				return followedTeams.map(team => team.name).includes(this.team.name)
-			} else {
-				return false;
-			}
 		},
 		getMoreInfoId(){
 			return 'more-info-' + this.team.name

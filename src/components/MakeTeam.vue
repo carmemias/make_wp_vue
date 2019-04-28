@@ -1,11 +1,10 @@
 <template lang="html">
 	<div class="team" :class="team.name">
-		<h3 v-if="isSelected">
+		<h3>
 			<router-link :to="{name: 'SingleTeam', params: {name: team.name.toLowerCase()} }" :isSelected="isSelected"> {{team.name}} </router-link>
 		</h3>
-		<h3 v-else> {{team.name}} </h3>
 
-		<team-icons :team="team"></team-icons>
+		<team-icons :team="team" :isSelected="isSelected"></team-icons>
 		<modal-content v-if="showThisModal" :team="team"></modal-content>
 	</div>
 </template>
